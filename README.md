@@ -1,1 +1,1 @@
-##This project is a basic CRUD operation student manangement app in which we have student's data stored in DB and we perform CRUD operations on it through JAVA JDBC Connectivity API.
+##This project is a basic CRUD operation student manangement app in which we have student's data stored in DB and we perform CRUD operations on it through JAVA JDBC Connectivity API.In this app an input is taken from a user and based on the input required action is performed let's say user entered 1 -> 1 represents to insert that student data in DB through JDBC API .
