@@ -1,0 +1,39 @@
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDButton;
+import org.apache.pdfbox.pdmodel.interactive.form.PDChoice;
+
+import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String sourcePdfPath = "C:\\Users\\HP\\Downloads\\MNLOC_new version 10172019_v6 (1).pdf";
+        String outputPdfPath = "C:\\Users\\HP\\Downloads\\Prachi.pdf";
+
+        try {
+            File sourceFile = new File(sourcePdfPath);
+            PDDocument document = PDDocument.load(sourceFile);
+
+            PDAcroForm acroForm = document.getDocumentCatalog().getAcroForm();
+            if (acroForm != null) {
+                for (PDField field : acroForm.getFields()) {
+                    if (field instanceof PDButton || field instanceof PDTextField || field instanceof PDChoice) {
+                        field.setReadOnly(true);
+                    }
+                }
+            }
+
+            document.save(outputPdfPath);
+            document.close();
+
+            System.out.println("All form fields made non-editable successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to make all form fields non-editable.");
+        }
+    }
+}
